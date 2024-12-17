@@ -2,6 +2,11 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
+app.use(function(req, res, next) {
+  res.setHeader('Strict-Transport-Security', 'max-age=63072000');
+  next();
+});
+
 app.get("/", (req, res) => res.type('html').send(html));
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
